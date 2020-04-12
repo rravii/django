@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<style type="text/css">
+  .create-form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+
+  	.submit-button{
+  		max-width: 200px;
+  	}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-7 offset-lg-1">
+			<form class="create-form" method="post">{% csrf_token %}
+
+				<!-- name -->
+				<div class="form-group">
+					<label for="id_name">Name</label>
+					<input class="form-control" type="text" name="name" id="id_name" placeholder="Product Name" required autofocus>
+				</div>
+
+				<!-- company -->
+				<div class="form-group">
+					<label for="id_company">Company</label>
+					<input class="form-control" type="text" name="company" id="id_company" placeholder="Product Company" required></input>
+				</div>
+
+                <!-- Type -->
+				<div class="form-group">
+					<label for="id_type">Type</label>
+					<input class="form-control" type="text" name="type" id="id_type" placeholder="Product Type" required></input>
+				</div>
+
+                <!-- cost -->
+				<div class="form-group">
+					<label for="id_cost">Cost</label>
+					<input class="form-control" type="text" name="cost" id="id_cost" placeholder="Product Cost" required></input>
+				</div>
+
+                <!-- stock -->
+				<div class="form-group">
+					<label for="id_stock">Stock</label>
+					<input class="form-control" type="text" name="stock" id="id_stock" placeholder="Product Stock" required></input>
+				</div>
+
+
+				<!-- Submit btn -->
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock content %}
