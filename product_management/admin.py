@@ -3,7 +3,7 @@ from product_management.models import Products
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'company', 'type', 'cost', 'stock',)
+    list_display = ('id', 'name', 'company', 'type', 'cost', 'stock',)
     search_fields = ('name', 'type',)
     # readonly_fields = ('date_joined', 'last_login')
 

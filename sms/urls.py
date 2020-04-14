@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from sales_management.views import *
+from gui.views import *
 from account.views import *
 from django.contrib.auth import views as auth_views
 from django.conf import settings

@@ -12,16 +12,21 @@ class Products(models.Model):
     cost            =models.FloatField()
     stock           =models.IntegerField()
     # author          =models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # slug            =models.SlugField(blank=True, unique=True)
+    slug            =models.SlugField(blank=True, unique=True)
 
     def __str__(self):
         return self.name
+
 
     class Meta:
         verbose_name = "Products"
         verbose_name_plural = 'Product'
 
-# def pre_save_products_receiver(sender, instance):
+def pre_save_products_receiver(sender, instance, **kwargs):
+    if not instance.slug:
+        instance.slug = slugify(instance.name)
+
+pre_save.connect(pre_save_products_receiver, sender=Products)
 
 
 

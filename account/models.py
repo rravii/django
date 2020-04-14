@@ -56,5 +56,5 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def active(self):
-        return 'Active' if self.is_active else 'Disable'
+    # def active(self):
+    #     return 'Active' if self.is_active else 'Disable'

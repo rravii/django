@@ -30,30 +30,33 @@
 				<!-- company -->
 				<div class="form-group">
 					<label for="id_company">Company</label>
-					<input class="form-control" type="text" name="company" id="id_company" placeholder="Product Company" required></input>
+					<input class="form-control" type="text" name="company" id="id_company" placeholder="Product Company" required>
 				</div>
 
                 <!-- Type -->
 				<div class="form-group">
 					<label for="id_type">Type</label>
-					<input class="form-control" type="text" name="type" id="id_type" placeholder="Product Type" required></input>
+					<input class="form-control" type="text" name="type" id="id_type" placeholder="Product Type" required>
 				</div>
 
                 <!-- cost -->
 				<div class="form-group">
 					<label for="id_cost">Cost</label>
-					<input class="form-control" type="text" name="cost" id="id_cost" placeholder="Product Cost" required></input>
+					<input class="form-control" type="text" name="cost" id="id_cost" placeholder="Product Cost" required>
 				</div>
 
                 <!-- stock -->
 				<div class="form-group">
 					<label for="id_stock">Stock</label>
-					<input class="form-control" type="text" name="stock" id="id_stock" placeholder="Product Stock" required></input>
+					<input class="form-control" type="text" name="stock" id="id_stock" placeholder="Product Stock" required>
 				</div>
 
 
 				<!-- Submit btn -->
-				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+                <div class="d-flex flex-row">
+                    <a href="{% url 'home' %}"><button class="submit-button btn btn-lg btn-primary btn-block " type="submit"><a style="color: white" href="{% url 'home' %}">Add</a></button>
+                </div>
+			</form>
 			</form>
 		</div>
 	</div>

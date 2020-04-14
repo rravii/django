@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style type="text/css">
+   .create-form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+
+  	.submit-button{
+  		max-width: 200px;
+  	}
+
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-7 offset-lg-1">
+
+			{% if success_message %}
+				<h3 style="color:green; text-align: center;">{{success_message}}</h3>
+			{% endif %}
+
+			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+                <!-- name -->
+				<div class="form-group">
+					<label for="id_name">Name</label>
+					<input class="form-control" type="text" name="name" id="id_name" placeholder="Product Name" value="{{ form.initial.name }}" required autofocus>
+				</div>
+
+				<!-- company -->
+				<div class="form-group">
+					<label for="id_company">Company</label>
+					<input class="form-control" type="text" name="company" id="id_company" placeholder="Product Company" value="{{ form.initial.company }}" required>
+				</div>
+
+                <!-- Type -->
+				<div class="form-group">
+					<label for="id_type">Type</label>
+					<input class="form-control" type="text" name="type" id="id_type" placeholder="Product Type" value="{{ form.initial.type }}" required>
+				</div>
+
+                <!-- cost -->
+				<div class="form-group">
+					<label for="id_cost">Cost</label>
+					<input class="form-control" type="text" name="cost" id="id_cost" placeholder="Product Cost" value="{{ form.initial.cost }}" required>
+				</div>
+
+                <!-- stock -->
+				<div class="form-group">
+					<label for="id_stock">Stock</label>
+					<input class="form-control" type="text" name="stock" id="id_stock" placeholder="Product Stock" value="{{ form.initial.stock }}" required>
+				</div>
+
+				{% for field in form %}
+					<p>
+						{% for error in field.errors %}
+							<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</p>
+				{% endfor %}
+				{% if form.non_field_errors %}
+					<div style="color: red">
+						<p>{{form.non_field_errors}}</p>
+					</div>
+				{% endif %}
+
+				<!-- Submit btn -->
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Update</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

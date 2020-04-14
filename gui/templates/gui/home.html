@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'snippets/home_css.html' %}
+
+<div class="background col-xs-12 col-sm-6 col-md-8" >
+{#    <div class = "container">#}
+{#        <div class="d-flex flex-column">#}
+{#            {% if request.user.is_authenticated %}#}
+{#                <h3>Products list</h3>#}
+{#                    {% for product in products %}#}
+{#                        <p>{{ product }}</p>#}
+{#                    {% endfor %}#}
+{#            {% else %}#}
+{#                    {% for account in accounts %}#}
+{#                        <p>{{ account.username }} | {{ account.date_joined }} {{ account.active }}</p>#}
+{#                    {% endfor%}#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{% if request.user.is_authenticated %}
+
+    <div class="store-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Store Management System</h1>
+      <p class="lead">Product records:</p>
+    </div>
+
+   <table class="table table-striped ">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Company</th>
+          <th scope="col">Type</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Stock</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <th scope="row">{{ product.id }}</th>
+                <td>{{ product.name }}</td>
+                <td>{{ product.company }}</td>
+                <td>{{ product.type }}</td>
+                <td>{{ product.cost }}</td>
+                <td>{{ product.stock }}</td>
+                <td><a href="{% url 'product_management:edit' product.slug %}">Update</a></td>
+                <td><a href="{% url 'product_management:delete' product.slug %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="bottompad">
+    </div>
+{% else %}
+
+    <div class="store-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Store Management System</h1>
+      <p class="lead">Staff Members</p>
+    </div>
+
+    <table class="table table-striped ">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Date joined</th>
+          <th scope="col">Last login</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <th scope="row">{{ account.id }}</th>
+                <td>{{ account.username }}</td>
+                <td>{{ account.date_joined }}</td>
+                <td>{{ account.last_login }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="bottompad">
+    </div>
+{% endif %}
+</div>
+
+{% endblock content %}

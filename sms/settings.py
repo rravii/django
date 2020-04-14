@@ -36,7 +36,7 @@ if DEBUG:
 
 INSTALLED_APPS = [
     # my apps
-    'sales_management',
+    'gui',
     'product_management',
     'account',
     # installed one
