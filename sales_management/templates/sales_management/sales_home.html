@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'snippets/home_css.html' %}
+
+<div class="background left-column col-lg-11 offset-lg-1" >
+
+    <div class="store-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+        <p class="lead">Enter Customer Details:</p>
+    </div>
+    {% include 'sales_management/snippets/customer.html' %}
+
+    <div class="store-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+        <p class="lead">Choose Product:</p>
+    </div>
+
+</div>
+
+{% endblock content %}

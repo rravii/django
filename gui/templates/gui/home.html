@@ -5,7 +5,7 @@
 
 {% include 'snippets/home_css.html' %}
 
-<div class="background col-xs-12 col-sm-6 col-md-8" >
+<div class="background left-column col-lg-11 offset-lg-1" >
 {#    <div class = "container">#}
 {#        <div class="d-flex flex-column">#}
 {#            {% if request.user.is_authenticated %}#}
@@ -27,6 +27,13 @@
       <p class="lead">Product records:</p>
     </div>
 
+    <div class="search-bar mb-sm-2 m-auto">
+        <form method="get">
+            <input type="text" class="form-control" name="q" id="id_q" placeholder="Search...">
+        </form>
+    </div>
+
+{% if product %}
    <table class="table table-striped ">
         <thead>
         <tr>
@@ -39,20 +46,35 @@
         </tr>
         </thead>
         <tbody>
-        {% for product in products %}
+        {% for products in product %}
             <tr>
-                <th scope="row">{{ product.id }}</th>
-                <td>{{ product.name }}</td>
-                <td>{{ product.company }}</td>
-                <td>{{ product.type }}</td>
-                <td>{{ product.cost }}</td>
-                <td>{{ product.stock }}</td>
-                <td><a href="{% url 'product_management:edit' product.slug %}">Update</a></td>
-                <td><a href="{% url 'product_management:delete' product.slug %}">Delete</a></td>
+                <th scope="row">></th>
+                <td>{{ products.name }}</td>
+                <td>{{ products.company }}</td>
+                <td>{{ products.type }}</td>
+                <td>{{ products.cost }}</td>
+                <td>{{ products.stock }}</td>
+                <td><a href="{% url 'product_management:edit' products.slug %}">Update</a></td>
+                <td><a href="{% url 'product_management:delete' products.slug %}">Delete</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% include 'product_management/snippets/product_pagination.html'%}
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="card m-auto">
+                <div class="card-body mt-2 mb-2">
+                    <h2 class="card-title">
+                        No results
+                    </h2>
+                    <p class="card-text">There were no results matching your search: "{{ query }}".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
     <div class="bottompad">
     </div>
 {% else %}
@@ -67,6 +89,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
+          <th scope="col">Email</th>
           <th scope="col">Date joined</th>
           <th scope="col">Last login</th>
         </tr>
@@ -76,15 +99,21 @@
             <tr>
                 <th scope="row">{{ account.id }}</th>
                 <td>{{ account.username }}</td>
+                <td>{{ account.email }}</td>
                 <td>{{ account.date_joined }}</td>
                 <td>{{ account.last_login }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% include 'gui/snippets/accounts_pagination.html' %}
     <div class="bottompad">
     </div>
 {% endif %}
 </div>
+
+<script type="text/javascript">
+    document.getElementById('id_q').value = '{{ query }}'
+</script>
 
 {% endblock content %}

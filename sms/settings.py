@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'gui',
     'product_management',
     'account',
+    'sales_management',
+    'phone_field',
     # installed one
     'django.contrib.admin',
     'django.contrib.auth',

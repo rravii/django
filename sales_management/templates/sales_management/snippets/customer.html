@@ -1,0 +1,39 @@
+<style type="text/css">
+  .create-form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+
+  	.submit-button{
+  		max-width: 200px;
+  	}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10">
+			<form class="create-form d-flex flex-row" method="post">{% csrf_token %}
+
+				<!-- name -->
+				<div class="form-group px-3">
+					<label for="id_name">Name</label>
+					<input class="form-control" type="text" name="name" id="id_name" placeholder="Customer Name" required autofocus>
+				</div>
+
+				<!-- contact-->
+				<div class="form-group px-3">
+					<label for="id_contact">Contact no</label>
+					<input class="form-control" type="text" name="contact" id="id_contact" placeholder="Contact no">
+				</div>
+
+				<!-- Submit btn -->
+                <div class="d-flex flex-row">
+                    <a href="{% url 'home' %}"><button class="submit-button btn btn-lg btn-primary btn-block " type="submit"><a style="color: white" href="{% url 'home' %}">Add</a></button>
+                </div>
+			</form>
+			</form>
+		</div>
+	</div>
+</div>

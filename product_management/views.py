@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from product_management.models import *
 from product_management.forms import *
 from account.models import *
+from django.db.models import Q
 
 
 def create_product_view(request):
@@ -79,3 +80,18 @@ def delete_product_view(request, slug):
 
     context['form'] = form
     return render(request, 'product_management/delete_product.html', context)
+
+def get_product_queryset(query=None):
+    queryset = []
+    queries = query.split(' ')#hello world = [hello, world]
+    for q in queries:
+        posts = Products.objects.filter(
+                Q(name__icontains=q) |
+                Q(company__icontains=q) |
+                Q(type__icontains=q)
+            ).distinct()
+
+        for post in posts:
+            queryset.append(post)
+
+    return list(set(queryset))

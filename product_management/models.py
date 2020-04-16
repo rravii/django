@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 
 class Products(models.Model):
-    name            =models.CharField(max_length=100, null=False, blank=False)
+    name            =models.CharField(max_length=100, null=False, blank=False, unique=True)
     company         =models.CharField(max_length=400, null=False, blank=False)
     type            =models.CharField(max_length=400, null=False, blank=False)
     cost            =models.FloatField()
@@ -17,10 +17,11 @@ class Products(models.Model):
     def __str__(self):
         return self.name
 
-
     class Meta:
         verbose_name = "Products"
         verbose_name_plural = 'Product'
+
+
 
 def pre_save_products_receiver(sender, instance, **kwargs):
     if not instance.slug:
